@@ -1,4 +1,5 @@
 import { useState} from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 
 import FormInput from "../form-input/form-input.component"
 import Button from "../button/button.component"
@@ -16,6 +17,7 @@ const defaultFormFields = {
 
 const SignInForm = () => {
 
+    const  navigate = useNavigate();
     const [formFields,setFormFields] = useState(defaultFormFields);
     const {email,password} = formFields;
 
@@ -25,6 +27,7 @@ const SignInForm = () => {
 
     const signInWithGoogle = async() => {
        await signInWithGooglePopup();
+       navigate("/")
     }
 
     const handleSubmit = async (event) => {
@@ -32,6 +35,7 @@ const SignInForm = () => {
 
             try {
                 const {user} = await signInAuthUserWithEmailAndPassword(email,password);
+                navigate("/")
             } catch (error) {
                 console.log(error);
             }

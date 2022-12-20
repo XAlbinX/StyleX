@@ -6,6 +6,7 @@ import Button from "../../component/button/button.component"
 import './sign-up-form.styles.scss'
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+import { useNavigate } from "react-router-dom";
 
 
 const defaultFormFields = {
@@ -17,6 +18,7 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
 
+    const navigate = useNavigate()
     const [formFields,setFormFields] = useState(defaultFormFields);
     const {displayName,email,password,confirmPassword} = formFields;
 
@@ -35,6 +37,7 @@ const SignUpForm = () => {
 
                 await createUserDocumentFromAuth(user,{displayName});
                 resetFormFields();
+                navigate("/")
             } catch (error) {
                 console.log(error);
             }
