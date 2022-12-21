@@ -1,12 +1,13 @@
-import { useState } from "react"
+import { useState,FormEvent,ChangeEvent } from "react"
 
 import FormInput from "../form-input/form-input.component"
-import Button from "../../component/button/button.component"
+import Button from "../button/button.component"
 
 import './sign-up-form.styles.scss'
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 import { useNavigate } from "react-router-dom";
+import { User, UserCredential } from "firebase/auth";
 
 
 const defaultFormFields = {
@@ -27,15 +28,15 @@ const SignUpForm = () => {
         setFormFields(defaultFormFields);
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event : FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if(password === confirmPassword){
 
             try {
-                const {user} = await createAuthUserWithEmailAndPassword(email,password);
+                const userData = await createAuthUserWithEmailAndPassword(email,password);
 
-                await createUserDocumentFromAuth(user,{displayName});
+                await createUserDocumentFromAuth(userData?.user,{displayName});
                 resetFormFields();
                 navigate("/")
             } catch (error) {
@@ -46,7 +47,7 @@ const SignUpForm = () => {
 
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
 
         const {name , value} = event.target;
 
@@ -68,7 +69,7 @@ const SignUpForm = () => {
                 <FormInput label = "Password" type={"password"} onChange = {handleChange} name = "password" value = {password} required/>
 
                 <FormInput label = "Confirm Password" type={"password"} onChange = {handleChange} name = "confirmPassword" value = {confirmPassword} required/>
-                <Button type="submit">Sign Up</Button>
+                <Button type="submit" buttonType>Sign Up</Button>
             </form>
         </div>
     )

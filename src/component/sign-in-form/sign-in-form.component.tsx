@@ -1,4 +1,4 @@
-import { useState} from "react"
+import { useState, FormEvent, ChangeEvent} from "react"
 import { Navigate, useNavigate } from "react-router-dom"
 
 import FormInput from "../form-input/form-input.component"
@@ -30,11 +30,11 @@ const SignInForm = () => {
        navigate("/")
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event : FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
             try {
-                const {user} = await signInAuthUserWithEmailAndPassword(email,password);
+                await signInAuthUserWithEmailAndPassword(email,password);
                 navigate("/")
             } catch (error) {
                 console.log(error);
@@ -42,7 +42,7 @@ const SignInForm = () => {
 
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
 
         const {name , value} = event.target;
 
@@ -61,7 +61,7 @@ const SignInForm = () => {
                 <FormInput label = "Password" type={"password"} onChange = {handleChange} name = "password" value = {password} required/>
                 <div className="buttons-container">
 
-                <Button type="submit">Sign In</Button>
+                <Button type="submit" buttonType>Sign In</Button>
                 <Button type="button" buttonType= "google" onClick = {signInWithGoogle}>Google sign in</Button>
                 </div>
                 
