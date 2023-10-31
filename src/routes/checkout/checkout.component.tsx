@@ -1,13 +1,18 @@
-import { useContext } from "react"
-import { CartContext } from "../../contexts/cart.context"
-import CheckoutItem from "../../component/checkout-item/checkout-item.component"
-import "./checkout.styles.scss"
+import React, { useContext } from "react";
+import { CartContext } from "../../contexts/cart.context";
+import CheckoutItem from "../../component/checkout-item/checkout-item.component";
+import "./checkout.styles.scss";
 
-const Checkout = ()=>{
+// Assuming you have a type for cart items like:
+// interface CartItem {
+//   id: number;
+//   // ... other properties ...
+// }
 
-    const {cartItems,cartTotal} = useContext(CartContext);
+const Checkout: React.FC = () => {
+    const { cartItems, cartTotal } = useContext(CartContext);
 
-    return(
+    return (
         <div className="checkout-container">
             <div className="checkout-header">
                 <div className="header-block">
@@ -31,9 +36,7 @@ const Checkout = ()=>{
             )}
             <span className="total">Total: ${cartTotal}</span>
         </div>
-        
-    )
-
+    );
 }
 
 export default Checkout;

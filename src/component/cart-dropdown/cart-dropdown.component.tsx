@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { CartContext } from "../../contexts/cart.context"
 import CartItem from "../cart-item/cart-item.component"
 
-import Button from "../../component/button/button.component"
+import Button from "../button/button.component"
 import { useNavigate } from "react-router-dom"
 
 const CartDropdown = () =>{
@@ -22,7 +22,7 @@ const CartDropdown = () =>{
                      <CartItem key={item.id} cartItem = {item}/>                   
                 ))}
             </div>
-            <Button onClick = {goToCheckoutHandler}>GO TO CHECKOUT</Button>
+            <Button buttonType="inverted" onClick = {goToCheckoutHandler}>GO TO CHECKOUT</Button>
 
         </div>
 
