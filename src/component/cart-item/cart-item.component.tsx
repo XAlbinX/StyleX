@@ -15,7 +15,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   const {name, imageUrl, price, quantity } = cartItem;
 
   return (
-    <div className="cart-item-container">
+    <div className="cart-item-container" data-testid="cart-item">
       <img src={imageUrl} alt={name} />
       <div className="item-details">
         <span className="name">{name}</span>

@@ -29,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const addProductToCart = () => addItemToCart(product as CartItem);
 
   return (
-    <div className="product-card-container">
+    <div className="product-card-container" data-testid="product-card"  >
       <img src={imageUrl} alt={name} />
       <div className="footer">
         <span className="name">{name}</span>

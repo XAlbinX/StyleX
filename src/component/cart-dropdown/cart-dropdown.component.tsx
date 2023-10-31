@@ -16,10 +16,10 @@ const CartDropdown = () =>{
     }
 
     return(
-        <div className="cart-dropdown-container"> 
+        <div className="cart-dropdown-container" data-testid="cart-dropdown"> 
             <div className="cart-items">
                 {cartItems.map((item) =>(
-                     <CartItem key={item.id} cartItem = {item}/>                   
+                     <CartItem key={item.id} cartItem = {item} />                   
                 ))}
             </div>
             <Button buttonType="inverted" onClick = {goToCheckoutHandler}>GO TO CHECKOUT</Button>
