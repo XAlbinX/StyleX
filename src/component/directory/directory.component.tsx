@@ -44,7 +44,7 @@ const categories: Category[] = [
 
 const Directory: React.FC = () => {
   return (
-    <div className="directory-container">
+    <div className="directory-container" data-testid="directory-container">
       {categories.map((category) => (
         <DirectoryItem key={category.id} category={category} />
       ))}

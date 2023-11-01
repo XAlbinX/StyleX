@@ -19,7 +19,7 @@ const DirectoryItem: React.FC<DirectoryItemProps> = ({ category }) => {
   const onNavigateHandler = () => navigate(route);
 
   return (
-    <div className="directory-item-container" onClick={onNavigateHandler}>
+    <div className="directory-item-container" data-testid="directory-item" onClick={onNavigateHandler}>
       <div className="background-image" style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className="body">
         <h2>{title.toUpperCase()}</h2>
